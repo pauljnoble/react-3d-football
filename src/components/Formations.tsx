@@ -102,10 +102,10 @@ const Formation = styled.div`
             position: absolute;
             right: 0;
             background-color: ${p => p.theme.colors.accent};
-            height: 100%;
             width: 4px;
-            top: 0;
-            /* content: ''; */
+            top: 0px;
+            bottom: 0px;
+            content: '';
             display: block;
         }
     }
