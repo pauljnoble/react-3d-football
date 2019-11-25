@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import Net from './Net';
+import FieldSVG from 'components/svgs/Field';
 import { absoluteFill } from 'utils/style';
 
 type Props = {
@@ -16,7 +17,8 @@ const Surface: React.FC<Props> = ({ active }) => {
                 ))}
             </Stripes>
             <Lines>
-                <Perimeter />
+                <StyledFieldSVG />
+                {/* <Perimeter />
                 <Halfway />
                 <Circle />
                 <PenaltyBoxArc />
@@ -25,7 +27,7 @@ const Surface: React.FC<Props> = ({ active }) => {
                 <PenaltyBox />
                 <PenaltyBoxInner />
                 <PenaltyBoxInner right />
-                <Spot></Spot>
+                <Spot></Spot> */}
             </Lines>
             <Net />
             <Net right />
@@ -37,10 +39,23 @@ const Surface: React.FC<Props> = ({ active }) => {
         </Root>
     );
 };
-
 export const PERMIETER = 4;
 const LINE_WIDTH = 5;
 const EDGE_HEIGHT = 12;
+
+const StyledFieldSVG = styled(FieldSVG)`
+    position: absolute;
+    width: ${100 - PERMIETER * 2}%;
+    top: 2%;
+    left: ${PERMIETER}%;
+    right: ${PERMIETER}%;
+
+    /* width: 100px;
+    height: 100px; */
+    path {
+        stroke: ${p => p.theme.colors.bgFieldLine};
+    }
+`;
 
 const Lines = styled.div`
     ${absoluteFill}
@@ -78,98 +93,6 @@ const Stripes = styled.div`
 `;
 
 const Stripe = styled.div``;
-
-const Spot = styled.div`
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 2%;
-    height: 2%;
-    border-radius: 50%;
-    margin: auto;
-    background-color: ${p => p.theme.colors.bgFieldLine};
-`;
-
-const Perimeter = styled.div`
-    position: absolute;
-    top: ${PERMIETER * 1.6}%;
-    bottom: ${PERMIETER * 1.6}%;
-    left: ${PERMIETER}%;
-    right: ${PERMIETER}%;
-    border: ${LINE_WIDTH}px solid ${p => p.theme.colors.bgFieldLine};
-`;
-
-const Halfway = styled.div`
-    width: ${LINE_WIDTH}px;
-    position: absolute;
-    top: ${PERMIETER * 1.6}%;
-    bottom: ${PERMIETER * 1.6}%;
-    left: 0;
-    right: 0;
-    margin: auto;
-    background-color: ${p => p.theme.colors.bgFieldLine};
-`;
-
-const Circle = styled.div`
-    position: absolute;
-    width: 15%;
-    height: 15%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    border-radius: 50%;
-    border: ${LINE_WIDTH}px solid ${p => p.theme.colors.bgFieldLine};
-`;
-
-const PenaltyBox = styled.div<{ right?: boolean }>`
-    position: absolute;
-    bottom: 0;
-    top: 0;
-    height: 48%;
-    width: 15%;
-    left: ${PERMIETER}%;
-    margin: auto;
-    border: ${LINE_WIDTH}px solid ${p => p.theme.colors.bgFieldLine};
-    ${p => p.right && `right: ${PERMIETER}%; left: auto;`}
-`;
-
-const PenaltyBoxInner = styled.div<{ right?: boolean }>`
-    position: absolute;
-    left: ${PERMIETER}%;
-    height: 15%;
-    width: 5%;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    border: ${LINE_WIDTH}px solid ${p => p.theme.colors.bgFieldLine};
-    ${p => p.right && `right: ${PERMIETER}%; left: auto;`}
-`;
-
-const PenaltyBoxArc = styled.div<{ right?: boolean }>`
-    position: absolute;
-    left: ${15 + PERMIETER}%;
-    height: 15%;
-    width: 5%;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    overflow: hidden;
-    ${p => p.right && `right: ${15 + PERMIETER}%; left: auto;`}
-
-    /* Use a psuedo element for the line and the parent as a mask */
-    &::before {
-        ${absoluteFill}
-        width: 300%;
-        border: ${LINE_WIDTH}px solid ${p => p.theme.colors.bgFieldLine};
-        border-radius: 50%;
-        content: '';
-        ${p => (p.right ? `transform: translateX(5%);` : `transform: translateX(-75%);`)}
-    }
-`;
 
 const edgeTopStyles = `
     height: ${EDGE_HEIGHT}px;

@@ -40,8 +40,6 @@ const StyledFieldSVG = styled(FieldSVG)`
     left: 0;
     width: 100%;
 
-    /* width: 100px;
-    height: 100px; */
     path {
         stroke: ${p => p.theme.colors.textReversedSecondary};
     }
@@ -60,27 +58,30 @@ const Field = styled.div`
 
 const Root = styled.div`
     position: absolute;
-    top: 140px;
+    top: 32px;
     right: 24px;
     display: flex;
     flex-direction: column;
     margin: auto;
     align-items: center;
-    width: 180px;
+    width: 160px;
     z-index: 3;
     color: ${p => p.theme.colors.textDefault};
 `;
 
 const Formation = styled.div<{ active: boolean }>`
     position: relative;
-    display: inline-block;
-    padding: 12px 0;
+    display: block;
     font-size: 1em;
     width: 120px;
     text-align: center;
-    cursor: pointer;
     border-bottom: 1px solid ${p => p.theme.colors.border};
     color: ${p => (p.active ? p.theme.colors.textDefault : p.theme.colors.textReversedSecondary)};
+
+    &:nth-child(2) {
+        margin-top: 24px;
+        border-top: 1px solid ${p => p.theme.colors.border};
+    }
 
     i {
         display: inline-block;
@@ -92,6 +93,11 @@ const Formation = styled.div<{ active: boolean }>`
         width: 32px;
         font-style: normal;
         margin-left: 4px;
+    }
+
+    div {
+        padding: 12px 0;
+        cursor: pointer;
     }
 
     span {
