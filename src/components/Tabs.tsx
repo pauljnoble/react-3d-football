@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { actions, useTracked } from 'state';
 
 const Tabs: React.FC = () => {
-    const [{ teams, activeTeamId }, dispatch]: any = useTracked();
+    const [{ teams, activeTeamId, isLoading }, dispatch]: any = useTracked();
     const [activeTeamIdState, setActiveTeamIdState] = useState(activeTeamId);
 
     const handleClick = id => {
@@ -22,7 +22,7 @@ const Tabs: React.FC = () => {
     };
 
     return (
-        <Root>
+        <Root isVisible={!isLoading}>
             {teams.map(t => (
                 <Team
                     key={t.id}
@@ -36,8 +36,11 @@ const Tabs: React.FC = () => {
     );
 };
 
-const Root = styled.div`
+const Root = styled.div<{ isVisible: boolean }>`
     display: flex;
+    opacity: 0;
+    transition: opacity 300ms; /* todo - themfiy */
+    ${p => p.isVisible && 'opacity: 1;'}
 `;
 
 const Team = styled.div<{ active: boolean }>`

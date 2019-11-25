@@ -4,10 +4,10 @@ import Icon from 'components/Icon';
 import { useTracked } from 'state';
 
 const MatchTitle = () => {
-    const [{ match, teams }]: any = useTracked();
+    const [{ match, teams, isLoading }]: any = useTracked();
 
     return (
-        <Title>
+        <Title isVisible={!isLoading}>
             <h1>
                 {teams[0].title}
                 <small>VS</small>
@@ -21,13 +21,16 @@ const MatchTitle = () => {
     );
 };
 
-const Title = styled.div`
+const Title = styled.div<{ isVisible: boolean }>`
     z-index: 1;
     background-image: linear-gradient(
         to bottom,
         ${p => `${p.theme.colors.bgDefault}, ${p.theme.colors.bgDefault}00`}
     );
     padding-bottom: 32px;
+    opacity: 0;
+    transition: opacity 300ms; /* todo - themfiy */
+    ${p => p.isVisible && 'opacity: 1;'}
 
     h1 {
         padding-top: 0.6em;

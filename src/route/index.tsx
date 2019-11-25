@@ -25,7 +25,6 @@ const Index = () => {
             loaded.current = loaded.current + 1;
 
             if (loaded.current === playerImages.length) {
-                console.log('All images loaded');
                 setIsLoadingImages(false);
             }
         };
@@ -38,7 +37,8 @@ const Index = () => {
 
     useEffect(() => {
         if (isLoadingRef.current && !isLoading) {
-            dispatch({ type: actions.SET_PLAYERS_VISIBLE, value: true });
+            // allow the elements to animate in...
+            setTimeout(() => dispatch({ type: actions.SET_PLAYERS_VISIBLE, value: true }), 600); // todo - themify
         }
         isLoadingRef.current = isLoading;
     }, [isLoading]);
