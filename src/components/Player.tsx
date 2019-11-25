@@ -171,14 +171,14 @@ const Root = styled.div<PlayerType>`
 
 const Number = styled.div<{ bgColor: string }>`
     position: absolute;
-    height: 30%;
-    width: 30%;
+    height: 36%;
+    width: 36%;
     top: 0;
-    right: -10%;
+    right: -12%;
     background-color: ${p => p.bgColor};
     color: #fff;
     display: flex;
-    font-size: 1em;
+    font-size: 1.2em;
     align-items: center;
     justify-content: center;
     border-radius: 50%;

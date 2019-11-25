@@ -48,9 +48,8 @@ const Root = styled.div<{ isVisible: boolean }>`
 const Team = styled.div<{ active: boolean }>`
     padding: 16px;
     font-weight: 700;
-    color: #fff;
+    color: ${p => (p.active ? p.theme.colors.textDefault : p.theme.colors.textReversedSecondary)};
     cursor: pointer;
-    ${p => !p.active && 'opacity: 0.33'};
 `;
 
 export default Tabs;
