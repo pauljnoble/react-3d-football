@@ -1,0 +1,36 @@
+{
+    "name": "clientside-proto",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "color": "^3.1.2",
+        "lodash": "^4.17.15",
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0",
+        "react-pose": "^4.0.10",
+        "react-scripts": "^3.2.0",
+        "react-tracked": "^0.11.0",
+        "styled-components": "^4.4.1",
+        "typescript": "^3.7.2"
+    },
+    "devDependencies": {
+        "@types/lodash": "^4.14.148",
+        "@types/react": "^16.9.11",
+        "@types/styled-components": "^4.4.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ]
+}
