@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import posed from 'react-pose';
-import { useTracked } from 'state';
+import { useTracked, actions } from 'state';
 
-const Player = ({ name, number, active, visible, i }) => {
+const Player = ({ name, number, active, visible, i, id }) => {
     const pose = visible ? 'visible' : 'hidden';
+
+    const [{ activePlayerId }, dispatch]: any = useTracked();
+    const hoverIntent = useRef(null);
+
+    const handleMouseOver = () => {
+        hoverIntent.current = setTimeout(() => {
+            !activePlayerId && dispatch({ type: actions.SET_MOUSEOVER_PLAYER, value: id });
+        }, 150);
+    };
+
+    const handleMouseOut = () => {
+        if (hoverIntent.current) {
+            clearTimeout(hoverIntent.current);
+        }
+        !activePlayerId && dispatch({ type: actions.SET_MOUSEOUT_PLAYER });
+    };
+
+    const handleClick = () => dispatch({ type: actions.SET_ACTIVE_PLAYER, value: id });
 
     return (
         <PosedListItem
@@ -14,6 +32,9 @@ const Player = ({ name, number, active, visible, i }) => {
             visible={visible}
             i={i}
             pose={pose}
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+            onClick={handleClick}
         >
             {name}
         </PosedListItem>
@@ -31,6 +52,7 @@ const TeamList: React.FC = () => {
         <Root>
             {players.map((p, i) => (
                 <Player
+                    id={p.id}
                     name={`${p.firstName} ${p.lastName}`}
                     number={p.number}
                     key={p.id}
@@ -50,13 +72,21 @@ const Root = styled.div`
 
 const ListItem = styled.div<{ number: number; active: boolean }>`
     position: relative;
-    color: rgba(255, 255, 255, 0.8);
     color: ${p => (p.active ? p.theme.colors.textDefault : p.theme.colors.textSecondary)};
     font-weight: 400;
     font-size: 16px;
     padding: 12px 14px;
     display: flex;
     align-items: center;
+    cursor: pointer;
+
+    &:hover {
+        color: ${p => p.theme.colors.textDefault};
+
+        &::before {
+            background-color: ${p => p.theme.colors.accent};
+        }
+    }
 
     &::before {
         height: 24px;

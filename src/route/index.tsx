@@ -11,7 +11,7 @@ import { Layout, Sidebar as LayoutSidebar, Main as LayoutMain } from 'components
 import { useTracked, actions } from 'state';
 
 const Index = () => {
-    const [{ teams, isLoading }, dispatch]: any = useTracked();
+    const [{ teams, isLoading, activePlayerId }, dispatch]: any = useTracked();
     const loaded = useRef(0);
     const [isLoadingImages, setIsLoadingImages] = useState(true);
     const isLoadingRef = useRef(isLoading);
@@ -43,6 +43,12 @@ const Index = () => {
         isLoadingRef.current = isLoading;
     }, [isLoading]);
 
+    const handleClick = () => {
+        if (activePlayerId) {
+            dispatch({ type: actions.SET_ACTIVE_PLAYER, value: null });
+        }
+    };
+
     return (
         <>
             <Layout>
@@ -50,7 +56,7 @@ const Index = () => {
                     <Tabs />
                     <TeamList />
                 </LayoutSidebar>
-                <LayoutMain>
+                <LayoutMain onClick={handleClick}>
                     <MatchTitle />
                     <Stage>
                         <Field>

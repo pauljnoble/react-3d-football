@@ -162,13 +162,10 @@ const Root = styled.div<PlayerType>`
     transition: opacity 600ms;
     transition-delay: ${p => p.i * 20}ms;
 
-    &:hover ${PlayerBg} { ${playerBgHoverStyles} };
-    &:hover ${Name} { ${nameHoverStyles} };
-
     ${p => !p.visible && 'pointer-events: none;'}
     ${p => p.focusing && !p.active && 'pointer-events: none'};
-    ${p => p.active && `${PlayerBg} {${playerBgHoverStyles}}`}
-    ${p => p.active && `${Name} {${nameHoverStyles}}`}
+    ${p => (p.mouseOver || p.active) && `${PlayerBg} {${playerBgHoverStyles}}`}
+    ${p => p.mouseOver && !p.active && `${Name} {${nameHoverStyles}}`}
     ${p => p.focusing && !p.active && playerInactiveStyles};
 `;
 
