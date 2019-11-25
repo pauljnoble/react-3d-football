@@ -17,7 +17,7 @@ const getTransformString = (styleObj: any) => {
     const properties = {
         rotateX: `(${styleObj.rotateX}deg)`,
         translateX: `(${styleObj.translateX}%)`,
-        translateY: `(${styleObj.translateY}%)`,
+        translateY: `(${styleObj.translateY + 10}%)`,
         rotateY: `(${styleObj.rotateY}deg)`,
     };
 
@@ -159,7 +159,7 @@ const Root = styled.div<PlayerType>`
     transform-origin: 50% 0;
     transform: ${getTransformString(defaultTransform)};
     opacity: ${p => (p.visible ? 1 : 0)};
-    transition: opacity 600ms;
+    transition: all 600ms;
     transition-delay: ${p => p.i * 20}ms;
 
     ${p => !p.visible && 'pointer-events: none;'}

@@ -1,77 +1,86 @@
 import React from 'react';
 import styled from 'styled-components';
+import FieldSVG from 'components/svgs/Field';
+import FormationPlayers from 'components/FormationPlayers';
+import { useTracked, actions } from 'state';
 
 const Formations = () => {
+    const [{ formations, activeFormationId }, dispatch]: any = useTracked();
+
+    const handleClick = formationId => {
+        console.log('click', formationId);
+        dispatch({ type: actions.SET_TEAM_FORMATION, value: formationId });
+    };
+
     return (
         <Root>
             {/* <Heading>Formation</Heading> */}
-            <Formation>
-                2<span>&ndash;</span>4<span>&ndash;</span>3<span>&ndash;</span>1
-            </Formation>
-            <Formation>
-                4<span>&ndash;</span>4<span>&ndash;</span>2
-            </Formation>
-            <Formation>
-                4<span>&ndash;</span>5<span>&ndash;</span>1
-            </Formation>
-            <Formation>
-                5<span>&ndash;</span>3<span>&ndash;</span>2
-            </Formation>
-            <Formation>
-                5<span>&ndash;</span>3<span>&ndash;</span>2
-            </Formation>
-            <Formation>
-                4<span>&ndash;</span>5<span>&ndash;</span>1
-            </Formation>
-            {/* <Formation>
-                <i>2</i> <i>4</i> <i>3</i> <i>1</i>
-            </Formation>
-            <Formation>
-                <i>3</i> <i>5</i> <i>2</i>
-            </Formation>
-            <Formation>
-                <i>4</i> <i>2</i> <i>3</i>
-            </Formation>
-            <Formation>
-                <i>5</i> <i>3</i> <i>2</i>
-            </Formation>
-            <Formation>
-                <i>5</i> <i>2</i> <i>3</i>
-            </Formation> */}
+            <Field>
+                <StyledFieldSVG />
+                <FormationPlayers />
+            </Field>
+            {formations.map(f => {
+                const innerHtml = f.name.replace(/\-/g, '<span>&ndash;</span>');
+                return (
+                    <Formation
+                        onClick={() => handleClick(f.id)}
+                        active={f.id === activeFormationId}
+                    >
+                        <div dangerouslySetInnerHTML={{ __html: innerHtml }} />
+                    </Formation>
+                );
+            })}
         </Root>
     );
 };
 
+const StyledFieldSVG = styled(FieldSVG)`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    /* width: 100px;
+    height: 100px; */
+    path {
+        stroke: ${p => p.theme.colors.textReversedSecondary};
+    }
+`;
+
+const Field = styled.div`
+    position: relative;
+    width: 100%;
+
+    &::before {
+        padding-top: 65%;
+        content: '';
+        display: block;
+    }
+`;
+
 const Root = styled.div`
     position: absolute;
     top: 140px;
-    right: 0;
+    right: 24px;
     display: flex;
     flex-direction: column;
     margin: auto;
-    justify-content: center;
-    max-width: ${p => p.theme.dimensions.maxWidth}px;
+    align-items: center;
+    width: 180px;
+    z-index: 3;
     color: ${p => p.theme.colors.textDefault};
 `;
 
-const Heading = styled.div`
-    color: ${p => p.theme.colors.textReversedSecondary};
-    text-align: right;
-    font-weight: 600;
-    margin-bottom: 8px;
-    height: 44px;
-    line-height: 44px;
-    border-bottom: 1px solid ${p => p.theme.colors.border};
-`;
-
-const Formation = styled.div`
+const Formation = styled.div<{ active: boolean }>`
     position: relative;
     display: inline-block;
-    padding: 6px 0 6px 16px;
-    padding: 12px 24px 12px 16px;
+    padding: 12px 0;
     font-size: 1em;
-    text-align: right;
-    border-top: 1px solid ${p => p.theme.colors.border};
+    width: 120px;
+    text-align: center;
+    cursor: pointer;
+    border-bottom: 1px solid ${p => p.theme.colors.border};
+    color: ${p => (p.active ? p.theme.colors.textDefault : p.theme.colors.textReversedSecondary)};
 
     i {
         display: inline-block;
@@ -88,30 +97,6 @@ const Formation = styled.div`
     span {
         padding: 0 0.1em;
         opacity: 0.5;
-    }
-
-    color: ${p => p.theme.colors.textReversedSecondary};
-
-    &:first-child {
-            color: ${p => p.theme.colors.textDefault};
-        span {
-            /* border: 1px solid ${p => p.theme.colors.border}; */
-        }
-
-        &::after {
-            position: absolute;
-            right: 0;
-            background-color: ${p => p.theme.colors.accent};
-            width: 4px;
-            top: 0px;
-            bottom: 0px;
-            content: '';
-            display: block;
-        }
-    }
-
-    &:last-child {
-        border-bottom: 1px solid ${p => p.theme.colors.border};
     }
 `;
 

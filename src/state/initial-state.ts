@@ -1,6 +1,7 @@
 export default {
     activeTeamId: 1,
     activePlayerId: null,
+    activeFormationId: 1,
     mouseOverPlayerId: null,
     playersVisible: false,
     isLoading: true,
@@ -11,11 +12,151 @@ export default {
     formations: [
         {
             id: 1,
-            name: '4-3-2',
+            name: '2-4-3-1',
             positions: [
                 {
-                    x: 13,
+                    x: 10,
                     y: 50,
+                },
+                {
+                    x: 30,
+                    y: 30,
+                },
+                {
+                    x: 30,
+                    y: 70,
+                },
+                {
+                    x: 50,
+                    y: 13,
+                },
+                {
+                    x: 50,
+                    y: 40,
+                },
+                {
+                    x: 50,
+                    y: 65,
+                },
+                {
+                    x: 50,
+                    y: 92,
+                },
+                {
+                    x: 70,
+                    y: 25,
+                },
+                {
+                    x: 70,
+                    y: 50,
+                },
+                {
+                    x: 70,
+                    y: 75,
+                },
+                {
+                    x: 87,
+                    y: 50,
+                },
+            ],
+        },
+        {
+            id: 2,
+            name: '4-3-3',
+            positions: [
+                {
+                    x: 10,
+                    y: 50,
+                },
+                {
+                    x: 30,
+                    y: 20,
+                },
+                {
+                    x: 30,
+                    y: 40,
+                },
+                {
+                    x: 30,
+                    y: 60,
+                },
+                {
+                    x: 30,
+                    y: 80,
+                },
+                {
+                    x: 50,
+                    y: 25,
+                },
+                {
+                    x: 50,
+                    y: 50,
+                },
+                {
+                    x: 50,
+                    y: 75,
+                },
+                {
+                    x: 70,
+                    y: 25,
+                },
+                {
+                    x: 70,
+                    y: 50,
+                },
+                {
+                    x: 70,
+                    y: 75,
+                },
+            ],
+        },
+        {
+            id: 3,
+            name: '4-5-1',
+            positions: [
+                {
+                    x: 10,
+                    y: 50,
+                },
+                {
+                    x: 30,
+                    y: 20,
+                },
+                {
+                    x: 30,
+                    y: 40,
+                },
+                {
+                    x: 30,
+                    y: 60,
+                },
+                {
+                    x: 30,
+                    y: 80,
+                },
+                {
+                    x: 50,
+                    y: 25,
+                },
+                {
+                    x: 50,
+                    y: 50,
+                },
+                {
+                    x: 50,
+                    y: 75,
+                },
+                {
+                    x: 70,
+                    y: 25,
+                },
+                {
+                    x: 70,
+                    y: 50,
+                },
+                {
+                    x: 70,
+                    y: 75,
                 },
             ],
         },
@@ -25,12 +166,11 @@ export default {
             id: 1,
             title: 'Chelsea',
             color: '#3750b1',
+            formationId: 1,
             players: [
                 {
                     id: 1,
                     teamId: 1,
-                    x: 13,
-                    y: 50,
                     firstName: 'Kepa',
                     lastName: 'Arrizabalaga',
                     position: 'Midfield',
@@ -42,8 +182,6 @@ export default {
                 {
                     id: 2,
                     teamId: 1,
-                    x: 30,
-                    y: 30,
                     firstName: 'Antonio',
                     lastName: 'Rudiger',
                     position: 'Midfield',
@@ -55,8 +193,6 @@ export default {
                 {
                     id: 3,
                     teamId: 1,
-                    x: 30,
-                    y: 70,
                     firstName: 'Marcus',
                     lastName: 'Alonso',
                     position: 'Midfield',
@@ -68,8 +204,6 @@ export default {
                 {
                     id: 4,
                     teamId: 1,
-                    x: 52,
-                    y: 13,
                     firstName: 'Andreas',
                     lastName: 'Christensen',
                     position: 'Midfield',
@@ -81,8 +215,6 @@ export default {
                 {
                     id: 5,
                     teamId: 1,
-                    x: 48,
-                    y: 40,
                     firstName: '',
                     lastName: 'Jorghino',
                     position: 'Midfield',
@@ -94,8 +226,6 @@ export default {
                 {
                     id: 6,
                     teamId: 1,
-                    x: 48,
-                    y: 65,
                     firstName: "N'Golo",
                     lastName: 'Kante',
                     position: 'Midfield',
@@ -107,8 +237,6 @@ export default {
                 {
                     id: 7,
                     teamId: 1,
-                    x: 52,
-                    y: 92,
                     firstName: 'Ross',
                     lastName: 'Barkley',
                     position: 'Midfield',
@@ -120,8 +248,6 @@ export default {
                 {
                     id: 8,
                     teamId: 1,
-                    x: 70,
-                    y: 25,
                     firstName: 'Pedro',
                     lastName: 'Bale',
                     position: 'Midfield',
@@ -133,8 +259,6 @@ export default {
                 {
                     id: 9,
                     teamId: 1,
-                    x: 70,
-                    y: 50,
                     firstName: '',
                     lastName: 'Willian',
                     position: 'Midfield',
@@ -146,8 +270,6 @@ export default {
                 {
                     id: 10,
                     teamId: 1,
-                    x: 70,
-                    y: 75,
                     firstName: 'Oliver',
                     lastName: 'Giroud',
                     position: 'Midfield',
@@ -159,8 +281,6 @@ export default {
                 {
                     id: 11,
                     teamId: 1,
-                    x: 87,
-                    y: 50,
                     firstName: 'Mason',
                     lastName: 'Mount',
                     position: 'Midfield',

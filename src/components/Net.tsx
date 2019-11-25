@@ -49,7 +49,8 @@ const Top = styled.div<{ right?: boolean }>`
     transform: rotateY(-90deg);
     transform-origin: 100% 100%;
     transform-style: preserve-3d;
-    background-image: url('/img/tmp-net.png');
+    /* background-image: url('/img/tmp-net.png'); */
+    background-color: rgba(255, 255, 255, 0.3);
     border-left: 2px solid ${p => p.theme.colors.bgNetPost};
     ${p => p.right && `transform: rotateY(90deg); `}
 `;
@@ -100,6 +101,6 @@ const Root = styled.div<{ right?: boolean }>`
     > * {
         position: absolute;
         background-size: 2px 2px;
-        background-image: url('/img/tmp-net.png');
+        background-color: rgba(255, 255, 255, 0.3);
     }
 `;

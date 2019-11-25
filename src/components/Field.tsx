@@ -38,7 +38,9 @@ const getTransformString = (styleObj: any) => {
 };
 
 const Field: React.FC<Props> = ({ offset, children }) => {
-    const [{ activePlayerId, mouseOverPlayerId, activeTeamId, teams }]: any = useTracked();
+    const [
+        { activePlayerId, mouseOverPlayerId, activeTeamId, formations, teams },
+    ]: any = useTracked();
     const players = [...teams.find(t => t.id === activeTeamId).players];
 
     const rootRef: React.RefObject<HTMLDivElement> = React.createRef();
@@ -48,7 +50,11 @@ const Field: React.FC<Props> = ({ offset, children }) => {
         if (!activePlayerId) {
             return setTransformState(defaultTransform);
         }
-        const { x, y } = players.find(p => p.id === activePlayerId);
+        const playerIndex = players.findIndex(p => p.id === activePlayerId);
+        const activeTeamIndex = teams.findIndex(t => t.id === activeTeamId);
+        const formation = formations.find(f => f.id === teams[activeTeamIndex].formationId);
+        const { x, y } = formation.positions[playerIndex];
+
         const { width } = rootRef.current.getBoundingClientRect();
         const translateX = 50 - x - 15; // +25 to account for drawer;
         const translateY = 100 - y;
@@ -65,16 +71,14 @@ const Field: React.FC<Props> = ({ offset, children }) => {
         if (!mouseOverPlayerId) {
             return setTransformState(defaultTransform);
         }
-        console.log('mouse over player id', mouseOverPlayerId);
 
-        const { x, y } = players.find(p => p.id === mouseOverPlayerId);
-        const { width } = rootRef.current.getBoundingClientRect();
+        const playerIndex = players.findIndex(p => p.id === mouseOverPlayerId);
+        const activeTeamIndex = teams.findIndex(t => t.id === activeTeamId);
+        const formation = formations.find(f => f.id === teams[activeTeamIndex].formationId);
+        const { x, y } = formation.positions[playerIndex];
+
         const translateX = (50 - x) / 20; // +25 to account for drawer;
         const translateY = (100 - y) / 20;
-        const defaultZ = defaultTransform.translateZ;
-        // const translateZ = transformState.translateZ === defaultZ ? 20 : transformState.translateZ;
-
-        console.log('translate Y', translateY);
 
         setTransformState({ ...transformState, translateX, translateY });
     }, [mouseOverPlayerId]);

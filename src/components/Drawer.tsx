@@ -163,7 +163,7 @@ const Root = styled.div<{ active: boolean }>`
     background: #f7f7f7;
     transition: transform ${p => p.theme.transitions.drawer}ms;
     transform: translateX(100%);
-    z-index: 2;
+    z-index: 9;
     color: ${p => p.theme.colors.textReversedDefault};
 
     &::before {

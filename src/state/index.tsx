@@ -15,6 +15,7 @@ export enum actions {
     SET_LOADING,
     SET_PLAYERS_VISIBLE,
     SET_ACTIVE_TEAM,
+    SET_TEAM_FORMATION,
 }
 
 type Action = {
@@ -42,6 +43,12 @@ export const reducer: Reducer<State, Action> = (state, action) => {
 
         case actions.SET_ACTIVE_TEAM:
             return { ...state, activeTeamId: action.value as number };
+
+        case actions.SET_TEAM_FORMATION:
+            const { teams } = state;
+            const teamIndex = teams.findIndex(t => t.id === state.activeTeamId);
+            teams[teamIndex].formationId = action.value as number;
+            return { ...state, teams, activeFormationId: action.value as number };
 
         default:
             return state;
