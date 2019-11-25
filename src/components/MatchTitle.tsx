@@ -31,7 +31,7 @@ const Title = styled.div<{ isVisible: boolean; isFaded: boolean }>`
     opacity: 0;
     transition: opacity 300ms; /* todo - themfiy */
     ${p => p.isVisible && 'opacity: 1;'}
-    ${p => p.isFaded && 'opacity: 0.5;'}
+    ${p => p.isFaded && 'opacity: 0.33;'}
 
 
     h1 {
@@ -65,7 +65,6 @@ const Title = styled.div<{ isVisible: boolean; isFaded: boolean }>`
     left: 32px;
     right: 32px;
     text-align: left;
-
     max-width: ${p => p.theme.dimensions.maxWidth}px;
     margin: auto;
     color: #fff;

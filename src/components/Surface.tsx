@@ -44,6 +44,7 @@ const EDGE_HEIGHT = 12;
 
 const Lines = styled.div`
     ${absoluteFill}
+    transition: all 400ms;
 `;
 
 const rootActiveStyles = css`
@@ -51,7 +52,6 @@ const rootActiveStyles = css`
 
     ${Lines} {
         opacity: 0.3;
-        transition: all 400ms;
     }
 `;
 
@@ -223,7 +223,7 @@ const Overlay = styled.div`
         ${p => p.theme.colors.bgDefault},
         ${p => `${p.theme.colors.bgDefault}00`}
     );
-    opacity: 0.45;
+    opacity: 0.5;
     pointer-events: none;
 `;
 
