@@ -7,6 +7,8 @@ import Stage from 'components/Stage';
 import Drawer from 'components/Drawer';
 import Tabs from 'components/Tabs';
 import MatchTitle from 'components/MatchTitle';
+import Disclaimer from 'components/Disclaimer';
+import Formations from 'components/Formations';
 import { Layout, Sidebar as LayoutSidebar, Main as LayoutMain } from 'components/Layout';
 import { useTracked, actions } from 'state';
 
@@ -55,9 +57,11 @@ const Index = () => {
                 <LayoutSidebar>
                     <Tabs />
                     <TeamList />
+                    <Disclaimer />
                 </LayoutSidebar>
                 <LayoutMain onClick={handleClick}>
                     <MatchTitle />
+                    <Formations />
                     <Stage>
                         <Field>
                             <Players />

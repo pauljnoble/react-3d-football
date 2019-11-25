@@ -14,7 +14,7 @@ const sizes: Record<string, number> = {
 };
 
 const dimensions = {
-    sidebarX: 280,
+    sidebarX: 240,
     maxWidth: 1200,
     minWidth: 900,
     yOffsetPercent: 45,
@@ -31,6 +31,7 @@ const colors = {
     bgFieldEdge: '#314254',
     textDefault: '#ffffff',
     textSecondary: 'rgba(255, 255, 255, 0.8)',
+    textTertiary: 'rgba(255, 255, 255, 0.4)',
     textReversedDefault: '#343237',
     textReversedSecondary: '#797a97', //343237
     border: '#4C4E6A',
@@ -41,8 +42,9 @@ const colors = {
 };
 
 const transitions = {
-    focus: 600,
+    focus: 800,
     hover: 200,
+    drawer: 400,
 };
 
 export default {

@@ -68,6 +68,7 @@ const TeamList: React.FC = () => {
 const Root = styled.div`
     border-top: 1px solid ${p => p.theme.colors.border};
     overflow: hidden;
+    flex: 1;
 `;
 
 const ListItem = styled.div<{ number: number; active: boolean }>`
@@ -109,7 +110,7 @@ const ListItem = styled.div<{ number: number; active: boolean }>`
         background-color: ${p => p.theme.colors.border};
         content: '';
         bottom: 0;
-        left: 12px;
+        left: 0;
         right: 12px;
         display: block;
     }

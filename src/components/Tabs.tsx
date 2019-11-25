@@ -7,6 +7,8 @@ const Tabs: React.FC = () => {
     const [activeTeamIdState, setActiveTeamIdState] = useState(activeTeamId);
 
     const handleClick = id => {
+        if (id === activeTeamId) return;
+
         setActiveTeamIdState(id);
         dispatch({ type: actions.SET_PLAYERS_VISIBLE, value: false });
         // wait...
@@ -44,16 +46,11 @@ const Root = styled.div<{ isVisible: boolean }>`
 `;
 
 const Team = styled.div<{ active: boolean }>`
-    flex: 1;
-    padding: 16px 0;
-    text-align: center;
+    padding: 16px;
     font-weight: 700;
     color: #fff;
     cursor: pointer;
-    ${p => !p.active && 'opacity: 0.6'};
-    &:last-child {
-        color: ${p => p.theme.colors.textTertiary};
-    }
+    ${p => !p.active && 'opacity: 0.33'};
 `;
 
 export default Tabs;

@@ -44,7 +44,7 @@ const Wrapper = styled.div`
 const Inner = styled.div`
     ${absoluteFill}
     perspective: ${100 * PERSPECTIVE_MULTIPLIER}vw;
-    perspective-origin: 50% -80%;
+    perspective-origin: 50% -100%; /* todo - this should depend on aspect ratio */
 
     @media (max-width: ${p => p.theme.dimensions.sidebarX + p.theme.dimensions.minWidth + 40}px) {
         perspective: ${p =>

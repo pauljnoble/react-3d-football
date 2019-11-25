@@ -218,14 +218,14 @@ const PlayerInner = styled.div<any>`
 
 const PosedPlayer = posed(PlayerInner)({
     hidden: {
-        translateY: '-60%',
+        translateY: '-100%',
         delay: ({ i }) => i * 20,
     },
     visible: {
         translateY: '-15%',
         duration: 150,
         scale: 1,
-        transition: { type: 'spring', stiffness: 300 },
+        transition: { type: 'spring' },
         delay: ({ i }) => i * 20,
     },
     hover: {

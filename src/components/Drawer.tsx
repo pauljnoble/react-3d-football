@@ -79,6 +79,10 @@ const Drawer: React.FC<Props> = () => {
 
 const rootActiveStyles = css`
     transform: translateX(0);
+
+    &::before {
+        opacity: 1;
+    }
 `;
 
 const Controls = styled.div`
@@ -157,10 +161,23 @@ const Root = styled.div<{ active: boolean }>`
     width: 480px;
     right: 0;
     background: #f7f7f7;
-    transition: transform 300ms;
+    transition: transform ${p => p.theme.transitions.drawer}ms;
     transform: translateX(100%);
     z-index: 2;
     color: ${p => p.theme.colors.textReversedDefault};
+
+    &::before {
+        position: absolute;
+        top: 0;
+        right: 100%;
+        width: 20%;
+        background-image: linear-gradient(to right, #1a1d2f00, #1a1d2f33);
+        height: 100%;
+        display: block;
+        opacity: 0;
+        transition: opacity ${p => p.theme.transitions.drawer}ms;
+        content: '';
+    }
 
     ${p => p.active && rootActiveStyles};
 `;

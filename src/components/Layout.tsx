@@ -7,10 +7,6 @@ export const Layout = styled.div`
     min-width: ${p => p.theme.dimensions.minWidth + p.theme.dimensions.sidebarX + 40}px;
     min-height: 600px;
     background-color: ${p => p.theme.colors.bgDefault};
-
-    * {
-        /* outline: 1px dotted rgba(255, 255, 255, 0.4); */
-    }
 `;
 
 export const Sidebar = styled.aside`
@@ -18,7 +14,9 @@ export const Sidebar = styled.aside`
     flex-basis: ${p => p.theme.dimensions.sidebarX}px;
     background-color: ${p => p.theme.colors.bgSidebar};
     padding-top: 120px;
-    color: #fff;
+    color: ${p => p.theme.colors.textDefault};
+    display: flex;
+    flex-direction: column;
 
     &::before {
         background-image: url('/img/tmp-logo-2.svg');

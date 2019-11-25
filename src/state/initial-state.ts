@@ -1,13 +1,25 @@
 export default {
+    activeTeamId: 1,
     activePlayerId: null,
     mouseOverPlayerId: null,
-    activeTeamId: 1,
     playersVisible: false,
     isLoading: true,
     match: {
         time: '14:00 Sun 24 Nov 2019',
         venue: 'Stamford Bridge, London',
     },
+    formations: [
+        {
+            id: 1,
+            name: '4-3-2',
+            positions: [
+                {
+                    x: 13,
+                    y: 50,
+                },
+            ],
+        },
+    ],
     teams: [
         {
             id: 1,
