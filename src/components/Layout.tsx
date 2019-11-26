@@ -18,8 +18,17 @@ export const Sidebar = styled.aside`
     display: flex;
     flex-direction: column;
 
+    img {
+        position: absolute;
+        top: 0;
+        left: 16px;
+        height: 120px;
+        width: 70%;
+        margin: auto;
+    }
+
     &::before {
-        background-image: url('/img/tmp-logo-2.svg');
+        background-image: url();
         background-repeat: no-repeat;
         background-position: 16px center;
         background-color: ${p => p.theme.colors.accent}; /* #489ed5; */

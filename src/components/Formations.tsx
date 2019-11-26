@@ -66,7 +66,6 @@ const Root = styled.div`
     align-items: center;
     width: 160px;
     z-index: 3;
-    color: ${p => p.theme.colors.textDefault};
 `;
 
 const Formation = styled.div<{ active: boolean }>`
@@ -103,6 +102,12 @@ const Formation = styled.div<{ active: boolean }>`
     span {
         padding: 0 0.1em;
         opacity: 0.5;
+    }
+
+    &:hover {
+        div {
+            color: ${p => p.theme.colors.textDefault};
+        }
     }
 `;
 

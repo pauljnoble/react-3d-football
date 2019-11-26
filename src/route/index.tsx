@@ -55,6 +55,7 @@ const Index = () => {
         <>
             <Layout>
                 <LayoutSidebar>
+                    <img src="/img/tmp-logo-2.svg" alt="Fantasy Football" />
                     <Tabs />
                     <TeamList />
                     <Disclaimer />

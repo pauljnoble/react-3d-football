@@ -34,6 +34,7 @@ const colors = {
     textTertiary: 'rgba(255, 255, 255, 0.4)',
     textReversedDefault: '#343237',
     textReversedSecondary: '#797a97', //343237
+    textReversedSecondaryHover: '#a5a6bb',
     border: '#4C4E6A',
     borderReversed: 'rgba(0, 0, 0, 0.1)',
     borderInput: 'rgba(0, 0, 0, 0.2)',

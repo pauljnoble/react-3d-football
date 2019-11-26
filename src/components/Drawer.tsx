@@ -175,6 +175,7 @@ const Root = styled.div<{ active: boolean }>`
         height: 100%;
         display: block;
         opacity: 0;
+        pointer-events: none;
         transition: opacity ${p => p.theme.transitions.drawer}ms;
         content: '';
     }
