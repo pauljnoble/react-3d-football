@@ -5,10 +5,9 @@ import FormationPlayers from 'components/FormationPlayers';
 import { useTracked, actions } from 'state';
 
 const Formations = () => {
-    const [{ formations, activeFormationId }, dispatch]: any = useTracked();
+    const [{ formations, activeFormationId, activeTeamId }, dispatch]: any = useTracked();
 
     const handleClick = formationId => {
-        console.log('click', formationId);
         dispatch({ type: actions.SET_TEAM_FORMATION, value: formationId });
     };
 

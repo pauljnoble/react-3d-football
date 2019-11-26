@@ -17,7 +17,7 @@ const getTransformString = (styleObj: any) => {
     const properties = {
         rotateX: `(${styleObj.rotateX}deg)`,
         translateX: `(${styleObj.translateX}%)`,
-        translateY: `(${styleObj.translateY + 15}%)`,
+        translateY: `(${styleObj.translateY}%)`,
         rotateY: `(${styleObj.rotateY}deg)`,
     };
 
@@ -157,7 +157,7 @@ const Root = styled.div<PlayerType>`
     left: ${p => p.x}%;
     transform-style: preserve-3d;
     transform-origin: 50% 0;
-    transform: ${getTransformString(defaultTransform)};
+    transform: translateY(15%) ${getTransformString(defaultTransform)};
     opacity: ${p => (p.visible ? 1 : 0)};
     transition: all 600ms;
     transition-delay: ${p => p.i * 20}ms;
@@ -218,14 +218,14 @@ const PlayerInner = styled.div<any>`
 
 const PosedPlayer = posed(PlayerInner)({
     hidden: {
-        translateY: '-100%',
+        translateY: '-50%',
         delay: ({ i }) => i * 20,
     },
     visible: {
         translateY: '-15%',
         duration: 150,
         scale: 1,
-        transition: { type: 'spring' },
+        transition: { type: 'spring', stiffness: 300, damping: 10 },
         delay: ({ i }) => i * 20,
     },
     hover: {

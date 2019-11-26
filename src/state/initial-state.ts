@@ -396,6 +396,7 @@ export default {
             id: 2,
             title: 'Barcelona',
             color: '#c9181d',
+            formationId: 3,
             players: [
                 {
                     id: 31,
