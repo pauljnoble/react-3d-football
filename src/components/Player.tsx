@@ -17,7 +17,7 @@ const getTransformString = (styleObj: any) => {
     const properties = {
         rotateX: `(${styleObj.rotateX}deg)`,
         translateX: `(${styleObj.translateX}%)`,
-        translateY: `(${styleObj.translateY + 10}%)`,
+        translateY: `(${styleObj.translateY + 15}%)`,
         rotateY: `(${styleObj.rotateY}deg)`,
     };
 
