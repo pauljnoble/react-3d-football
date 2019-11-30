@@ -13,7 +13,6 @@ const Formations = () => {
 
     return (
         <Root>
-            {/* <Heading>Formation</Heading> */}
             <Field>
                 <StyledFieldSVG />
                 <FormationPlayers />
@@ -24,6 +23,7 @@ const Formations = () => {
                     <Formation
                         onClick={() => handleClick(f.id)}
                         active={f.id === activeFormationId}
+                        key={f.id}
                     >
                         <div dangerouslySetInnerHTML={{ __html: innerHtml }} />
                     </Formation>

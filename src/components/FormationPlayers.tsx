@@ -14,6 +14,7 @@ const FormationPlayers: React.FC<Props> = () => {
             {team.players.map((p, i) => (
                 <FormationPlayer
                     i={i}
+                    key={p.id}
                     x={formation.positions[i].x}
                     y={formation.positions[i].y}
                     active={mouseOverPlayerId === p.id}
