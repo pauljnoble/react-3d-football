@@ -46,29 +46,27 @@ const Drawer: React.FC<Props> = () => {
                     </Name>
                     <BigStats>
                         <Stat>
-                            23<span>Goals</span>
+                            {player.matches}
+                            <span>Matches</span>
                         </Stat>
                         <Stat>
-                            3<span>Matches</span>
+                            {player.goals}
+                            <span>Goals</span>
                         </Stat>
                         <Stat>
-                            4<span>Goals</span>
-                        </Stat>
-                        <Stat>
-                            36%<span>Accuracy</span>
+                            {player.assists}
+                            <span>Assists</span>
                         </Stat>
                     </BigStats>
                     <DefinitionList>
-                        <Term>Age</Term>
-                        <Definition>26</Definition>
-                        <Term>Age</Term>
-                        <Definition>26</Definition>
+                        <Term>DOB</Term>
+                        <Definition>{player.dob}</Definition>
+                        <Term>Weight</Term>
+                        <Definition>{player.weight}kg</Definition>
+                        <Term>Height</Term>
+                        <Definition>{player.height}cm</Definition>
                     </DefinitionList>
-                    <Abstract>
-                        A talented two-footed winger, who is also capable of playing more centrally,
-                        Pedro arrived at Stamford Bridge with a fantastic pedigree having already
-                        enjoyed success at the highest level at club and international level.
-                    </Abstract>
+                    <Abstract>{player.bio}</Abstract>
                 </Details>
             </Profile>
         );
