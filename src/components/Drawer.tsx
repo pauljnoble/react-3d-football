@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { useTracked, actions } from 'state';
 import Icon from 'components/Icon';
+import countries from 'utils/countries';
 
 type Props = any;
 const Drawer: React.FC<Props> = () => {
@@ -26,6 +27,9 @@ const Drawer: React.FC<Props> = () => {
             const { id } = player;
             dispatch({ type: actions.SET_ACTIVE_PLAYER, value: id });
         };
+
+        const countryCode = player.nationality.split(',')[1].trim();
+        const emoji = countryCode && countries[countryCode] && countries[countryCode].emoji;
 
         return (
             <Profile>
@@ -65,6 +69,8 @@ const Drawer: React.FC<Props> = () => {
                         <Definition>{player.weight}kg</Definition>
                         <Term>Height</Term>
                         <Definition>{player.height}cm</Definition>
+                        <Term>Birthplace</Term>
+                        <Definition>{emoji}</Definition>
                     </DefinitionList>
                     <Abstract>{player.bio}</Abstract>
                 </Details>

@@ -18,16 +18,6 @@ const Surface: React.FC<Props> = ({ active }) => {
             </Stripes>
             <Lines>
                 <StyledFieldSVG />
-                {/* <Perimeter />
-                <Halfway />
-                <Circle />
-                <PenaltyBoxArc />
-                <PenaltyBoxArc right />
-                <PenaltyBox right />
-                <PenaltyBox />
-                <PenaltyBoxInner />
-                <PenaltyBoxInner right />
-                <Spot></Spot> */}
             </Lines>
             <Net />
             <Net right />
