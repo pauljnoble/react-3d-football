@@ -11,11 +11,7 @@ type Props = {
 const Surface: React.FC<Props> = ({ active }) => {
     return (
         <Root active={active}>
-            <Stripes>
-                {Array.from(Array(17).keys()).map(s => (
-                    <Stripe key={s} />
-                ))}
-            </Stripes>
+            <Stripes />
             <Lines>
                 <StyledFieldSVG />
             </Lines>
@@ -30,7 +26,6 @@ const Surface: React.FC<Props> = ({ active }) => {
     );
 };
 export const PERMIETER = 4;
-const LINE_WIDTH = 5;
 const EDGE_HEIGHT = 12;
 
 const StyledFieldSVG = styled(FieldSVG)`
@@ -40,8 +35,6 @@ const StyledFieldSVG = styled(FieldSVG)`
     left: ${PERMIETER}%;
     right: ${PERMIETER}%;
 
-    /* width: 100px;
-    height: 100px; */
     path {
         stroke: ${p => p.theme.colors.bgFieldLine};
     }
@@ -71,18 +64,18 @@ const Root = styled.div<Props>`
 
 const Stripes = styled.div`
     ${absoluteFill}
-    display: flex;
-
-    > * {
-        flex: 1;
-
-        &:nth-child(odd) {
-            background-color: rgba(0, 0, 0, 0.06);
-        }
-    }
+    background-image: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.06) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(0, 0, 0, 0.06) 50%,
+        rgba(0, 0, 0, 0.06) 75%,
+        transparent 75%,
+        transparent 100%
+    );
+    background-size: 21% 100%;
 `;
-
-const Stripe = styled.div``;
 
 const edgeTopStyles = `
     height: ${EDGE_HEIGHT}px;
