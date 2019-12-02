@@ -16,8 +16,8 @@ const Players: React.FC<Props> = () => {
                 <Player
                     {...p}
                     key={p.id}
-                    x={formation.positions[i].x}
-                    y={formation.positions[i].y}
+                    x={team.home ? formation.positions[i].x : 100 - formation.positions[i].x}
+                    y={team.home ? formation.positions[i].y : 100 - formation.positions[i].y}
                     color={team.color}
                     i={i}
                 />

@@ -12,7 +12,7 @@ export default {
     formations: [
         {
             id: 1,
-            name: '4-2-3-1',
+            name: '4-3-3',
             positions: [
                 {
                     x: 10,
@@ -20,7 +20,7 @@ export default {
                 },
                 {
                     x: 30,
-                    y: 13,
+                    y: 20,
                 },
                 {
                     x: 30,
@@ -28,19 +28,23 @@ export default {
                 },
                 {
                     x: 30,
-                    y: 65,
+                    y: 60,
                 },
                 {
                     x: 30,
-                    y: 92,
+                    y: 80,
                 },
                 {
                     x: 50,
-                    y: 30,
+                    y: 25,
                 },
                 {
                     x: 50,
-                    y: 70,
+                    y: 50,
+                },
+                {
+                    x: 50,
+                    y: 75,
                 },
                 {
                     x: 70,
@@ -54,12 +58,9 @@ export default {
                     x: 70,
                     y: 75,
                 },
-                {
-                    x: 87,
-                    y: 50,
-                },
             ],
         },
+
         {
             id: 2,
             name: '4-4-2',
@@ -112,7 +113,7 @@ export default {
         },
         {
             id: 3,
-            name: '4-3-3',
+            name: '4-2-3-1',
             positions: [
                 {
                     x: 10,
@@ -120,7 +121,7 @@ export default {
                 },
                 {
                     x: 30,
-                    y: 20,
+                    y: 13,
                 },
                 {
                     x: 30,
@@ -128,23 +129,19 @@ export default {
                 },
                 {
                     x: 30,
-                    y: 60,
+                    y: 65,
                 },
                 {
                     x: 30,
-                    y: 80,
+                    y: 92,
                 },
                 {
                     x: 50,
-                    y: 25,
+                    y: 30,
                 },
                 {
                     x: 50,
-                    y: 50,
-                },
-                {
-                    x: 50,
-                    y: 75,
+                    y: 70,
                 },
                 {
                     x: 70,
@@ -157,6 +154,10 @@ export default {
                 {
                     x: 70,
                     y: 75,
+                },
+                {
+                    x: 87,
+                    y: 50,
                 },
             ],
         },
@@ -265,6 +266,7 @@ export default {
     teams: [
         {
             id: 1,
+            home: true,
             title: 'Chelsea',
             color: '#3750b1',
             formationId: 1,
@@ -515,9 +517,10 @@ export default {
         },
         {
             id: 2,
+            home: false,
             title: 'Barcelona',
             color: '#c9181d',
-            formationId: 3,
+            formationId: 1,
             players: [
                 {
                     id: 31,
@@ -626,17 +629,16 @@ export default {
                     number: '6',
                     thumbnail: 'barcelona-th-6.png',
                     hero: 'chelsea-hero-1.jpg',
-                    dob: 'bar',
-                    nationality: 'AU',
+                    dob: 'December 30, 1999',
+                    nationality: ' French Guianese, FR',
                     matches: 2,
                     saves: null,
-
                     cleanSheets: null,
                     goals: 0,
                     assists: 0,
-                    weight: 75,
-                    height: 180,
-                    bio: 'Some words here',
+                    weight: 81,
+                    height: 190,
+                    bio: 'Bio',
                 },
                 {
                     id: 26,

@@ -46,14 +46,22 @@ const Field: React.FC<Props> = ({ offset, children }) => {
     const rootRef: React.RefObject<HTMLDivElement> = React.createRef();
     const [transformState, setTransformState] = useState(defaultTransform);
 
+    const getXY = (player, isHome) => {
+        return {
+            x: isHome ? player.x : 100 - player.x,
+            y: isHome ? player.y : 100 - player.y,
+        };
+    };
+
     useEffect(() => {
         if (!activePlayerId) {
             return setTransformState(defaultTransform);
         }
         const playerIndex = players.findIndex(p => p.id === activePlayerId);
         const activeTeamIndex = teams.findIndex(t => t.id === activeTeamId);
+        const isHome = teams[activeTeamIndex].home;
         const formation = formations.find(f => f.id === teams[activeTeamIndex].formationId);
-        const { x, y } = formation.positions[playerIndex];
+        const { x, y } = getXY(formation.positions[playerIndex], isHome);
 
         const { width } = rootRef.current.getBoundingClientRect();
         const translateX = 50 - x - 15; // +25 to account for drawer;
@@ -74,8 +82,9 @@ const Field: React.FC<Props> = ({ offset, children }) => {
 
         const playerIndex = players.findIndex(p => p.id === mouseOverPlayerId);
         const activeTeamIndex = teams.findIndex(t => t.id === activeTeamId);
+        const isHome = teams[activeTeamIndex].home;
         const formation = formations.find(f => f.id === teams[activeTeamIndex].formationId);
-        const { x, y } = formation.positions[playerIndex];
+        const { x, y } = getXY(formation.positions[playerIndex], isHome);
 
         const translateX = (50 - x) / 20; // +25 to account for drawer;
         const translateY = (100 - y) / 20;

@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Akzidenz-Grotesk BQ',  sans-serif;
+  font-family: 'Roboto', 'Akzidenz-Grotesk BQ',  sans-serif;
   padding: 0;
   margin: 0;
 }
