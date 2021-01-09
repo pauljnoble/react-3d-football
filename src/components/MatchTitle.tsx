@@ -9,9 +9,9 @@ const MatchTitle = () => {
     return (
         <Title isVisible={!isLoading} isFaded={!!activePlayerId}>
             <h1>
-                {teams[0].title}
+                {teams[0] && teams[0].title}
                 <small>VS</small>
-                {teams[1].title}
+                {teams[1] && teams[1].title}
             </h1>
             <p>
                 <Icon type="time" /> {match.time}&nbsp;&nbsp;&nbsp;

@@ -7,7 +7,11 @@ import countries from 'utils/countries';
 type Props = any;
 const Drawer: React.FC<Props> = () => {
     const [{ teams, activeTeamId, activePlayerId }, dispatch]: any = useTracked();
-    const players = [...teams.find(t => t.id === activeTeamId).players];
+    
+    const getActiveTeam = () => (teams || []).find(t => t.id === activeTeamId) || {}
+    const getPlayers = () => getActiveTeam().players || []
+
+    const players = [...getPlayers()];
 
     const renderPlayer = () => {
         const player = players.find(p => p.id === activePlayerId);
@@ -28,13 +32,22 @@ const Drawer: React.FC<Props> = () => {
             dispatch({ type: actions.SET_ACTIVE_PLAYER, value: id });
         };
 
-        const countryCode = player.nationality.split(',')[1].trim();
+        const countryCode = player.nationality ? player.nationality.split(',')[1].trim() : undefined;
         const emoji = countryCode && countries[countryCode] && countries[countryCode].emoji;
+
+        const renderPlayerInfo = (infos = []) => (
+            infos.map(info => (
+                <DefinitionSubList key={info.name}>
+                    <Term>{info.name}</Term>
+                    <Definition>{info.value}</Definition>
+                </DefinitionSubList>
+            ))
+        )
 
         return (
             <Profile>
                 <Image>
-                    <img src={`/img/${player.hero}`} />
+                    <img src={player.largeImage} />
                 </Image>
                 <Details>
                     <Controls>
@@ -46,7 +59,7 @@ const Drawer: React.FC<Props> = () => {
                         </Button>
                     </Controls>
                     <Name>
-                        {player.firstName} {player.lastName}
+                        {player.name || `${player.firstName} ${player.lastName}`}
                     </Name>
                     <BigStats>
                         <Stat>
@@ -63,16 +76,25 @@ const Drawer: React.FC<Props> = () => {
                         </Stat>
                     </BigStats>
                     <DefinitionList>
+                        {player.dob && (<>
                         <Term>DOB</Term>
                         <Definition>{player.dob}</Definition>
+                        </>)}
+                        {player.weight && (<>
                         <Term>Weight</Term>
                         <Definition>{player.weight}kg</Definition>
+                        </>)}
+                        {player.height && (<>
                         <Term>Height</Term>
                         <Definition>{player.height}cm</Definition>
+                        </>)}
+                        {emoji && (<>
                         <Term>Birthplace</Term>
                         <Definition>{emoji}</Definition>
+                        </>)}
                     </DefinitionList>
-                    <Abstract>{player.bio}</Abstract>
+                    {renderPlayerInfo(player.playerInfo)}
+                    {player.bio && <Abstract>{player.bio}</Abstract>}
                 </Details>
             </Profile>
         );
@@ -139,7 +161,11 @@ const Button = styled.button`
 const DefinitionList = styled.dl`
     display: flex;
     flex-wrap: wrap;
-    border-bottom: 1px solid ${p => p.theme.colors.borderReversed};
+`;
+
+const DefinitionSubList = styled.div`
+    display: flex;
+    flex-wrap: wrap;
 `;
 
 const definitionStyles = css`
@@ -192,6 +218,7 @@ const Abstract = styled.p`
     font-size: 20px;
     line-height: 1.4;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    border-top: 1px solid ${p => p.theme.colors.borderReversed};
 `;
 
 const Name = styled.h2`
@@ -204,8 +231,13 @@ const Name = styled.h2`
 const Profile = styled.div``;
 
 const Image = styled.div`
+    // overflow: hidden;
+    // position: relative;
     overflow: hidden;
-    position: relative;
+    display: flex;
+    justify-content: center;
+    max-height: 240px;
+    background-color: ${p => p.theme.colors.bgSidebar};
 
     &::before {
         padding-top: 50%;
@@ -214,10 +246,11 @@ const Image = styled.div`
     }
 
     img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
+        // position: absolute;
+        // top: 0;
+        // left: 0;
+        // width: 100%;
+        object-fit: contain;
     }
 `;
 

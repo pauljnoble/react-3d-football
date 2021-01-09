@@ -4,21 +4,26 @@ import Player from './Player';
 
 type Props = any;
 
+// add to center circle
+// const PAD_Y = 4.5
+
 const Players: React.FC<Props> = () => {
     // track activeFormationId to re-render when formation is changed
-    const [{ teams, formations, activeTeamId, activeFormationId }]: any = useTracked();
-    const team = teams.find(t => t.id === activeTeamId);
-    const formation = formations.find(f => f.id === team.formationId);
+    const [{ teams, activeTeamId, activeFormationId }]: any = useTracked();
+
+    const getActiveTeam = () => (teams || []).find(t => t.id === activeTeamId) || {}
+    const team = getActiveTeam()
+    const players = team.players || []
 
     return (
         <>
-            {team.players.map((p, i) => (
+            {players.map((plr, i) => (
                 <Player
-                    {...p}
-                    key={p.id}
-                    x={team.home ? formation.positions[i].x : 100 - formation.positions[i].x}
-                    y={team.home ? formation.positions[i].y : 100 - formation.positions[i].y}
-                    color={team.color}
+                    {...plr}
+                    key={plr.id}
+                    x={plr.posField.x}
+                    y={plr.posField.y}
+                    color={plr.color || team.color}
                     i={i}
                 />
             ))}

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import posed from 'react-pose';
 import { useTracked, actions } from 'state';
 
-const Player = ({ name, number, active, visible, i, id }) => {
-    const pose = visible ? 'visible' : 'hidden';
+const Player = ({ name, number, active, visible, i, id, isOut }) => {
+    const pose = visible && !isOut ? 'visible' : 'hidden';
 
     const [{ activePlayerId }, dispatch]: any = useTracked();
     const hoverIntent = useRef(null);
@@ -35,6 +35,7 @@ const Player = ({ name, number, active, visible, i, id }) => {
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}
             onClick={handleClick}
+            minimized={isOut}
         >
             {name}
         </PosedListItem>
@@ -43,22 +44,24 @@ const Player = ({ name, number, active, visible, i, id }) => {
 
 const TeamList: React.FC = () => {
     const [
-        { teams, playersVisible, mouseOverPlayerId, activePlayerId, activeTeamId },
+        { teams, playersVisible, mouseOverPlayerId, activePlayerId, activeTeamId, activeFormationId },
     ]: any = useTracked();
 
-    const players = [...teams.find(t => t.id === activeTeamId).players];
+    const getActiveTeam = () => (teams || []).find(t => t.id === activeTeamId) || {}
+    const players = getActiveTeam().players || []
 
     return (
         <Root>
-            {players.map((p, i) => (
+            {players && players.map((p, i) => (
                 <Player
                     id={p.id}
-                    name={`${p.firstName} ${p.lastName}`}
+                    name={p.nickname || p.name || `${p.firstName} ${p.lastName}`}
                     number={p.number}
                     key={p.id}
                     active={[mouseOverPlayerId, activePlayerId].includes(p.id)}
                     visible={playersVisible}
                     i={i}
+                    isOut={p.isOut}
                 />
             ))}
         </Root>
@@ -71,15 +74,17 @@ const Root = styled.div`
     flex: 1;
 `;
 
-const ListItem = styled.div<{ number: number; active: boolean }>`
+const ListItem = styled.div<{ number: number; active: boolean; minimized: boolean }>`
     position: relative;
     color: ${p => (p.active ? p.theme.colors.textDefault : p.theme.colors.textSecondary)};
     font-weight: 400;
     font-size: 16px;
-    padding: 12px 14px;
+    padding: ${p => (p.minimized ? '0 14px' : '12px 14px')};
     display: flex;
     align-items: center;
     cursor: pointer;
+    height: ${p => (p.minimized ? '0' : '48px')};
+    transition: height 1s, padding 1s;
 
     &:hover {
         color: ${p => p.theme.colors.textDefault};

@@ -1,9 +1,9 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { absoluteFill } from 'utils/style';
+import styled from 'styled-components';
+import APP_PARAMS from '../utils/app-params'
 
 const Disclaimer: React.FC = () => {
-    return <Root>&copy; 2019 Fantasy Football</Root>;
+    return <Root>&copy; {String(new Date().getFullYear())} {APP_PARAMS.APP_TITLE}</Root>;
 };
 
 const Root = styled.div<{ right?: boolean }>`

@@ -5,7 +5,10 @@ import FormationPlayers from 'components/FormationPlayers';
 import { useTracked, actions } from 'state';
 
 const Formations = () => {
-    const [{ formations, activeFormationId, activeTeamId }, dispatch]: any = useTracked();
+    const [{ teams, activeFormationId, activeTeamId }, dispatch]: any = useTracked();
+
+    const getActiveTeam = () => (teams || []).find(t => t.id === activeTeamId) || {}
+    const formations = getActiveTeam().formations || []
 
     const handleClick = formationId => {
         dispatch({ type: actions.SET_TEAM_FORMATION, value: formationId });

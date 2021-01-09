@@ -39,9 +39,11 @@ const getTransformString = (styleObj: any) => {
 
 const Field: React.FC<Props> = ({ offset, children }) => {
     const [
-        { activePlayerId, mouseOverPlayerId, activeTeamId, formations, teams },
+        { activePlayerId, mouseOverPlayerId, activeTeamId, teams },
     ]: any = useTracked();
-    const players = [...teams.find(t => t.id === activeTeamId).players];
+    const getActiveTeam = () => (teams || []).find(t => t.id === activeTeamId) || {}
+    const getPlayers = () => getActiveTeam().players || []
+    const players = [...getPlayers()];
 
     const rootRef: React.RefObject<HTMLDivElement> = React.createRef();
     const [transformState, setTransformState] = useState(defaultTransform);
@@ -57,11 +59,15 @@ const Field: React.FC<Props> = ({ offset, children }) => {
         if (!activePlayerId) {
             return setTransformState(defaultTransform);
         }
-        const playerIndex = players.findIndex(p => p.id === activePlayerId);
-        const activeTeamIndex = teams.findIndex(t => t.id === activeTeamId);
-        const isHome = teams[activeTeamIndex].home;
-        const formation = formations.find(f => f.id === teams[activeTeamIndex].formationId);
-        const { x, y } = getXY(formation.positions[playerIndex], isHome);
+        // const playerIndex = players.findIndex(p => p.id === activePlayerId);
+        // const activeTeamIndex = teams.findIndex(t => t.id === activeTeamId);
+        // const isHome = teams[activeTeamIndex].home;
+        // const formations = teams[activeTeamIndex].formations
+        // const formation = formations.find(f => f.id === teams[activeTeamIndex].formationId);
+        // const { x, y } = getXY(formation.positions[playerIndex], isHome);
+
+        const player = players.find(p => p.id === activePlayerId)
+        const { x, y } = player.posField
 
         const { width } = rootRef.current.getBoundingClientRect();
         const translateX = 50 - x - 15; // +25 to account for drawer;
@@ -80,11 +86,14 @@ const Field: React.FC<Props> = ({ offset, children }) => {
             return setTransformState(defaultTransform);
         }
 
-        const playerIndex = players.findIndex(p => p.id === mouseOverPlayerId);
-        const activeTeamIndex = teams.findIndex(t => t.id === activeTeamId);
-        const isHome = teams[activeTeamIndex].home;
-        const formation = formations.find(f => f.id === teams[activeTeamIndex].formationId);
-        const { x, y } = getXY(formation.positions[playerIndex], isHome);
+        // const playerIndex = players.findIndex(p => p.id === mouseOverPlayerId);
+        // const activeTeamIndex = teams.findIndex(t => t.id === activeTeamId);
+        // const isHome = teams[activeTeamIndex].home;
+        // const formations = teams[activeTeamIndex].formations
+        // const formation = formations.find(f => f.id === teams[activeTeamIndex].formationId);
+        // const { x, y } = getXY(formation.positions[playerIndex], isHome);
+        const player = players.find(p => p.id === mouseOverPlayerId)
+        const { x, y } = player.posField
 
         const translateX = (50 - x) / 20; // +25 to account for drawer;
         const translateY = (100 - y) / 20;

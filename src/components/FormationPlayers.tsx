@@ -5,19 +5,20 @@ import { useTracked } from 'state';
 type Props = any;
 
 const FormationPlayers: React.FC<Props> = () => {
-    const [{ teams, formations, mouseOverPlayerId, activeTeamId }]: any = useTracked();
-    const team = teams.find(t => t.id === activeTeamId);
-    const formation = formations.find(f => f.id === team.formationId);
+    const [{ teams, mouseOverPlayerId, activeTeamId }]: any = useTracked();
+
+    const getActiveTeam = () => (teams || []).find(t => t.id === activeTeamId) || {}
+    const players = getActiveTeam().players || []
 
     return (
         <>
-            {team.players.map((p, i) => (
+            {players.map((plr, i) => (
                 <FormationPlayer
                     i={i}
-                    key={p.id}
-                    x={team.home ? formation.positions[i].x : 100 - formation.positions[i].x}
-                    y={team.home ? formation.positions[i].y : 100 - formation.positions[i].y}
-                    active={mouseOverPlayerId === p.id}
+                    key={plr.id}
+                    x={plr.posField.x}
+                    y={plr.isOut ? plr.posField.y + 20 : plr.posField.y}
+                    active={mouseOverPlayerId === plr.id}
                 />
             ))}
         </>

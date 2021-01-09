@@ -33,12 +33,15 @@ const getTransformString = (styleObj: any) => {
 const Player: React.FC<Props> = ({
     id,
     color,
+    name,
+    nickname,
     firstName,
     lastName,
     number,
     x,
     y,
     thumbnail,
+    initials,
     i,
 }) => {
     const [{ activePlayerId, mouseOverPlayerId, playersVisible }, dispatch]: any = useTracked();
@@ -56,7 +59,7 @@ const Player: React.FC<Props> = ({
         pose = 'hover';
     }
 
-    const name = firstName ? `${firstName} ${lastName}` : lastName;
+    const nameC = nickname || name || `${firstName} ${lastName}`;
 
     return (
         <Root
@@ -76,9 +79,10 @@ const Player: React.FC<Props> = ({
             </ShadowWrap>
             <PosedPlayer pose={pose} i={i}>
                 <Name>
-                    <span>{name}</span>
+                    <span>{nameC}</span>
                 </Name>
-                <img src={`/img/${thumbnail}`} />
+                {thumbnail && <img src={thumbnail} />}
+                {!thumbnail && <NameImg>{initials || nickname}</NameImg>}
                 <PlayerBg />
                 <Number bgColor={color}>{number}</Number>
             </PosedPlayer>
@@ -117,6 +121,20 @@ const playerBgHoverStyles = css`
 const nameHoverStyles = css`
     opacity: 1;
     transform: translateY(0);
+`;
+
+const NameImg = styled.div`
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    z-index: 3;
+    font-weight: 700;
 `;
 
 const Name = styled.div`
@@ -222,7 +240,8 @@ const PosedPlayer = posed(PlayerInner)({
         delay: ({ i }) => i * 20,
     },
     visible: {
-        translateY: '-15%',
+        // translateY: '-15%',
+        translateY: '0%',
         duration: 150,
         scale: 1,
         transition: { type: 'spring', stiffness: 300, damping: 10 },
@@ -237,7 +256,8 @@ const PosedPlayer = posed(PlayerInner)({
 const ShadowWrap = styled.div`
     ${absoluteFill}
     transform-origin: 0 100%;
-    transform: translateY(-15%) rotateX(89deg);
+    // transform: translateY(-15%) rotateX(89deg);
+    transform: translateY(0%) rotateX(89deg);
 `;
 
 const Shadow = styled.div`
