@@ -17,7 +17,7 @@ const Index = () => {
     const loaded = useRef(0);
     const [isLoadingImages, setIsLoadingImages] = useState(true);
     const isLoadingRef = useRef(isLoading);
-    const playerImages = flatten([...teams.map(t => [...t.players.map(p => p.thumbnail)])]);
+    const playerImages = flatten([...teams.map((t) => [...t.players.map((p) => p.thumbnail)])]);
     const images = [];
 
     for (let i = 0; i < playerImages.length; i++) {
@@ -35,15 +35,15 @@ const Index = () => {
     useEffect(() => {
         if (isLoadingImages) return;
         dispatch({ type: actions.SET_LOADING, value: false });
-    }, [isLoadingImages]);
+    }, [isLoadingImages, dispatch]);
 
     useEffect(() => {
+        // Allow the elements to animate in...
         if (isLoadingRef.current && !isLoading) {
-            // allow the elements to animate in...
             setTimeout(() => dispatch({ type: actions.SET_PLAYERS_VISIBLE, value: true }), 600); // todo - themify
         }
         isLoadingRef.current = isLoading;
-    }, [isLoading]);
+    }, [isLoading, dispatch]);
 
     const handleClick = () => {
         if (activePlayerId) {
@@ -52,26 +52,24 @@ const Index = () => {
     };
 
     return (
-        <>
-            <Layout>
-                <LayoutSidebar>
-                    <img src="/img/tmp-logo-2.svg" alt="Fantasy Football" />
-                    <Tabs />
-                    <TeamList />
-                    <Disclaimer />
-                </LayoutSidebar>
-                <LayoutMain onClick={handleClick}>
-                    <MatchTitle />
-                    <Formations />
-                    <Stage>
-                        <Field>
-                            <Players />
-                        </Field>
-                    </Stage>
-                </LayoutMain>
-                <Drawer />
-            </Layout>
-        </>
+        <Layout>
+            <LayoutSidebar>
+                <img src="/img/logo.svg" alt="Fantasy Football" />
+                <Tabs />
+                <TeamList />
+                <Disclaimer />
+            </LayoutSidebar>
+            <LayoutMain onClick={handleClick}>
+                <MatchTitle />
+                <Formations />
+                <Stage>
+                    <Field>
+                        <Players />
+                    </Field>
+                </Stage>
+            </LayoutMain>
+            <Drawer />
+        </Layout>
     );
 };
 

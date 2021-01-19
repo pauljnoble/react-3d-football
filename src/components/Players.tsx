@@ -2,13 +2,12 @@ import React from 'react';
 import { useTracked } from 'state';
 import Player from './Player';
 
-type Props = any;
+type Props = any; // todo
 
 const Players: React.FC<Props> = () => {
-    // track activeFormationId to re-render when formation is changed
-    const [{ teams, formations, activeTeamId, activeFormationId }]: any = useTracked();
-    const team = teams.find(t => t.id === activeTeamId);
-    const formation = formations.find(f => f.id === team.formationId);
+    const [{ teams, formations, activeTeamId }]: any = useTracked();
+    const team = teams.find((t) => t.id === activeTeamId);
+    const formation = formations.find((f) => f.id === team.formationId);
 
     return (
         <>

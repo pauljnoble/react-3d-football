@@ -4,25 +4,26 @@ import { useTracked, actions } from 'state';
 import Icon from 'components/Icon';
 import countries from 'utils/countries';
 
-type Props = any;
+type Props = any; // todo
+
 const Drawer: React.FC<Props> = () => {
     const [{ teams, activeTeamId, activePlayerId }, dispatch]: any = useTracked();
-    const players = [...teams.find(t => t.id === activeTeamId).players];
+    const players = [...teams.find((t) => t.id === activeTeamId).players];
 
     const renderPlayer = () => {
-        const player = players.find(p => p.id === activePlayerId);
+        const player = players.find((p) => p.id === activePlayerId);
 
-        const handleClickPrev = e => {
+        const handleClickPrev = (e) => {
             e.preventDefault();
-            const index = players.findIndex(p => p.id === activePlayerId);
+            const index = players.findIndex((p) => p.id === activePlayerId);
             const player = players[index - 1] || players[players.length - 1];
             const { id } = player;
             dispatch({ type: actions.SET_ACTIVE_PLAYER, value: id });
         };
 
-        const handleClickNext = e => {
+        const handleClickNext = (e) => {
             e.preventDefault();
-            const index = players.findIndex(p => p.id === activePlayerId);
+            const index = players.findIndex((p) => p.id === activePlayerId);
             const player = players[index + 1] || players[0];
             const { id } = player;
             dispatch({ type: actions.SET_ACTIVE_PLAYER, value: id });
@@ -30,11 +31,12 @@ const Drawer: React.FC<Props> = () => {
 
         const countryCode = player.nationality.split(',')[1].trim();
         const emoji = countryCode && countries[countryCode] && countries[countryCode].emoji;
+        const fullName = `${player.firstName} ${player.lastName}`;
 
         return (
             <Profile>
                 <Image>
-                    <img src={`/img/${player.hero}`} />
+                    <img src={`/img/${player.hero}`} alt={fullName} />
                 </Image>
                 <Details>
                     <Controls>
@@ -45,9 +47,7 @@ const Drawer: React.FC<Props> = () => {
                             <Icon type="rightChevron" size={32} />
                         </Button>
                     </Controls>
-                    <Name>
-                        {player.firstName} {player.lastName}
-                    </Name>
+                    <Name>{fullName}</Name>
                     <BigStats>
                         <Stat>
                             {player.matches}
@@ -111,7 +111,7 @@ const Stat = styled.dt`
     span {
         display: block;
         font-size: 16px;
-        color: ${p => p.theme.colors.textReversedSecondary};
+        color: ${(p) => p.theme.colors.textReversedSecondary};
     }
 `;
 
@@ -126,27 +126,27 @@ const Button = styled.button`
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    border: 1px solid ${p => p.theme.colors.borderInput};
-    color: ${p => p.theme.colors.textDefault};
+    border: 1px solid ${(p) => p.theme.colors.borderInput};
+    color: ${(p) => p.theme.colors.textDefault};
     outline: none;
-    background-color: ${p => p.theme.colors.accent};
+    background-color: ${(p) => p.theme.colors.accent};
 
     &:hover {
-        background-color: ${p => p.theme.colors.accentSecondary};
+        background-color: ${(p) => p.theme.colors.accentSecondary};
     }
 `;
 
 const DefinitionList = styled.dl`
     display: flex;
     flex-wrap: wrap;
-    border-bottom: 1px solid ${p => p.theme.colors.borderReversed};
+    border-bottom: 1px solid ${(p) => p.theme.colors.borderReversed};
 `;
 
 const definitionStyles = css`
     flex-basis: 50%;
     margin: 0;
     padding: 0.66em 0;
-    border-top: 1px solid ${p => p.theme.colors.borderReversed};
+    border-top: 1px solid ${(p) => p.theme.colors.borderReversed};
     color: #77747c;
     font-size: 18px;
 `;
@@ -165,10 +165,10 @@ const Root = styled.div<{ active: boolean }>`
     width: 480px;
     right: 0;
     background: #f7f7f7;
-    transition: transform ${p => p.theme.transitions.drawer}ms;
+    transition: transform ${(p) => p.theme.transitions.drawer}ms;
     transform: translateX(100%);
     z-index: 9;
-    color: ${p => p.theme.colors.textReversedDefault};
+    color: ${(p) => p.theme.colors.textReversedDefault};
 
     &::before {
         position: absolute;
@@ -180,11 +180,11 @@ const Root = styled.div<{ active: boolean }>`
         display: block;
         opacity: 0;
         pointer-events: none;
-        transition: opacity ${p => p.theme.transitions.drawer}ms;
+        transition: opacity ${(p) => p.theme.transitions.drawer}ms;
         content: '';
     }
 
-    ${p => p.active && rootActiveStyles};
+    ${(p) => p.active && rootActiveStyles};
 `;
 
 const Abstract = styled.p`

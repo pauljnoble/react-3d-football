@@ -27,7 +27,7 @@ const getTransformString = (styleObj: any) => {
         transform = `${transform}${key}${properties[key]} `;
     }
 
-    return transform;
+    return transform.trim();
 };
 
 const Player: React.FC<Props> = ({
@@ -42,6 +42,8 @@ const Player: React.FC<Props> = ({
     i,
 }) => {
     const [{ activePlayerId, mouseOverPlayerId, playersVisible }, dispatch]: any = useTracked();
+    let pose = playersVisible ? 'visible' : 'hidden';
+    const name = firstName ? `${firstName} ${lastName}` : lastName;
 
     const handleClick = () => dispatch({ type: actions.SET_ACTIVE_PLAYER, value: id });
 
@@ -50,13 +52,9 @@ const Player: React.FC<Props> = ({
 
     const handleMouseOut = () => !activePlayerId && dispatch({ type: actions.SET_MOUSEOUT_PLAYER });
 
-    let pose = playersVisible ? 'visible' : 'hidden';
-
     if ([mouseOverPlayerId, activePlayerId].includes(id)) {
         pose = 'hover';
     }
-
-    const name = firstName ? `${firstName} ${lastName}` : lastName;
 
     return (
         <Root
@@ -78,7 +76,7 @@ const Player: React.FC<Props> = ({
                 <Name>
                     <span>{name}</span>
                 </Name>
-                <img src={`/img/${thumbnail}`} />
+                <img src={`/img/${thumbnail}`} alt={name} />
                 <PlayerBg />
                 <Number bgColor={color}>{number}</Number>
             </PosedPlayer>
@@ -139,8 +137,8 @@ const Name = styled.div`
 
     span {
         display: inline-block;
-        background: ${p => p.theme.colors.bgDefault};
-        color: ${p => p.theme.colors.textDefault};
+        background: ${(p) => p.theme.colors.bgDefault};
+        color: ${(p) => p.theme.colors.textDefault};
         padding-left: 0.5em;
         padding-right: 0.5em;
         border-radius: 0.6em;
@@ -153,20 +151,20 @@ const Name = styled.div`
 const Root = styled.div<PlayerType>`
     position: absolute;
     width: 9%;
-    top: ${p => p.y}%;
-    left: ${p => p.x}%;
+    top: ${(p) => p.y}%;
+    left: ${(p) => p.x}%;
     transform-style: preserve-3d;
     transform-origin: 50% 0;
     transform: translateY(15%) ${getTransformString(defaultTransform)};
-    opacity: ${p => (p.visible ? 1 : 0)};
+    opacity: ${(p) => (p.visible ? 1 : 0)};
     transition: all 600ms;
-    transition-delay: ${p => p.i * 20}ms;
+    transition-delay: ${(p) => p.i * 20}ms;
 
-    ${p => !p.visible && 'pointer-events: none;'}
-    ${p => p.focusing && !p.active && 'pointer-events: none'};
-    ${p => (p.mouseOver || p.active) && `${PlayerBg} {${playerBgHoverStyles}}`}
-    ${p => p.mouseOver && !p.active && `${Name} {${nameHoverStyles}}`}
-    ${p => p.focusing && !p.active && playerInactiveStyles};
+    ${(p) => !p.visible && 'pointer-events: none;'}
+    ${(p) => p.focusing && !p.active && 'pointer-events: none'};
+    ${(p) => (p.mouseOver || p.active) && `${PlayerBg} {${playerBgHoverStyles}}`}
+    ${(p) => p.mouseOver && !p.active && `${Name} {${nameHoverStyles}}`}
+    ${(p) => p.focusing && !p.active && playerInactiveStyles};
 `;
 
 const Number = styled.div<{ bgColor: string }>`
@@ -175,7 +173,7 @@ const Number = styled.div<{ bgColor: string }>`
     width: 36%;
     top: 0;
     right: -12%;
-    background-color: ${p => p.bgColor};
+    background-color: ${(p) => p.bgColor};
     color: #fff;
     display: flex;
     font-size: 1.2em;

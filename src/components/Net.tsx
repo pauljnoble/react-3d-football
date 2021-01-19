@@ -23,7 +23,7 @@ const Back = styled.div`
     width: 90%;
     transform: rotateY(-90deg);
     transform-origin: 0 0;
-    border: 3px solid ${p => p.theme.colors.bgNetPost};
+    border: 3px solid ${(p) => p.theme.colors.bgNetPost};
     border-left: 0;
     transform-style: preserve-3d;
 `;
@@ -35,10 +35,10 @@ const Side = styled.div<{ top?: boolean }>`
     height: 30%;
     transform: rotateY(-90deg) rotateX(90deg);
     transform-origin: 0 100%;
-    border: 2px solid ${p => p.theme.colors.bgNetPost};
+    border: 2px solid ${(p) => p.theme.colors.bgNetPost};
     border-left: 0;
     border-bottom: 0;
-    ${p => p.top && `bottom: 100%; top: auto; `}
+    ${(p) => p.top && `bottom: 100%; top: auto; `}
 `;
 
 const Top = styled.div<{ right?: boolean }>`
@@ -49,10 +49,9 @@ const Top = styled.div<{ right?: boolean }>`
     transform: rotateY(-90deg);
     transform-origin: 100% 100%;
     transform-style: preserve-3d;
-    /* background-image: url('/img/tmp-net.png'); */
     background-color: rgba(255, 255, 255, 0.3);
-    border-left: 2px solid ${p => p.theme.colors.bgNetPost};
-    ${p => p.right && `transform: rotateY(90deg); `}
+    border-left: 2px solid ${(p) => p.theme.colors.bgNetPost};
+    ${(p) => p.right && `transform: rotateY(90deg);`}
 `;
 
 const rootRightStyles = css`
@@ -65,7 +64,7 @@ const rootRightStyles = css`
         left: auto;
         width: 60%;
         height: 50%;
-        border-left: 2px solid ${p => p.theme.colors.bgNetPost};
+        border-left: 2px solid ${(p) => p.theme.colors.bgNetPost};
     }
 
     ${Top} {
@@ -73,7 +72,7 @@ const rootRightStyles = css`
 
         &::before {
             transform: rotateX(-26deg) translateX(80%);
-            border-left: 2px solid ${p => p.theme.colors.bgNetPost};
+            border-left: 2px solid ${(p) => p.theme.colors.bgNetPost};
             border-right: 0;
         }
     }
@@ -96,7 +95,7 @@ const Root = styled.div<{ right?: boolean }>`
     bottom: 0;
     height: 15%;
     width: 5%;
-    ${p => p.right && rootRightStyles};
+    ${(p) => p.right && rootRightStyles};
 
     > * {
         position: absolute;

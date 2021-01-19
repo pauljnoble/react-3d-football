@@ -6,26 +6,27 @@ const Tabs: React.FC = () => {
     const [{ teams, activeTeamId, isLoading }, dispatch]: any = useTracked();
     const [activeTeamIdState, setActiveTeamIdState] = useState(activeTeamId);
 
-    const handleClick = id => {
+    const handleClick = (id) => {
         if (id === activeTeamId) return;
 
         setActiveTeamIdState(id);
         dispatch({ type: actions.SET_PLAYERS_VISIBLE, value: false });
-        // wait...
+
+        // Wait...
         setTimeout(() => {
-            // update team ...
+            // Update team ...
             dispatch({ type: actions.SET_ACTIVE_TEAM, value: id });
         }, 400);
 
         setTimeout(() => {
-            // update players ...
+            // Update players ...
             dispatch({ type: actions.SET_PLAYERS_VISIBLE, value: true });
         }, 800);
     };
 
     return (
         <Root isVisible={!isLoading}>
-            {teams.map(t => (
+            {teams.map((t) => (
                 <Team
                     key={t.id}
                     onClick={() => handleClick(t.id)}
@@ -41,14 +42,14 @@ const Tabs: React.FC = () => {
 const Root = styled.div<{ isVisible: boolean }>`
     display: flex;
     opacity: 0;
-    transition: opacity 300ms; /* todo - themfiy */
-    ${p => p.isVisible && 'opacity: 1;'}
+    transition: opacity 300ms; /* todo: themeify */
+    ${(p) => p.isVisible && 'opacity: 1;'}
 `;
 
 const Team = styled.div<{ active: boolean }>`
     padding: 16px;
     font-weight: 700;
-    color: ${p => (p.active ? p.theme.colors.textDefault : p.theme.colors.textReversedSecondary)};
+    color: ${(p) => (p.active ? p.theme.colors.textDefault : p.theme.colors.textReversedSecondary)};
     cursor: pointer;
 `;
 
