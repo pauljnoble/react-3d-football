@@ -70,7 +70,7 @@ const Drawer: React.FC<Props> = () => {
                         <Term>Height</Term>
                         <Definition>{player.height}cm</Definition>
                         <Term>Birthplace</Term>
-                        <Definition>{emoji}</Definition>
+                        <Definition>{player.nationality}</Definition>
                     </DefinitionList>
                     <Abstract>{player.bio}</Abstract>
                 </Details>

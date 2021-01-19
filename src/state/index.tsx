@@ -48,7 +48,7 @@ export const reducer: Reducer<State, Action> = (state, action) => {
 
         case actions.SET_ACTIVE_TEAM: {
             const { teams } = state;
-            const teamIndex = teams.findIndex(t => t.id === action.value);
+            const teamIndex = teams.findIndex((t) => t.id === action.value);
             return {
                 ...state,
                 activeTeamId: action.value as number,
@@ -58,7 +58,7 @@ export const reducer: Reducer<State, Action> = (state, action) => {
 
         case actions.SET_TEAM_FORMATION: {
             const { teams } = state;
-            const teamIndex = teams.findIndex(t => t.id === state.activeTeamId);
+            const teamIndex = teams.findIndex((t) => t.id === state.activeTeamId);
             teams[teamIndex].formationId = action.value as number;
             return { ...state, teams, activeFormationId: action.value as number };
         }
