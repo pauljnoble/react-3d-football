@@ -6,8 +6,8 @@ type Props = any;
 
 const FormationPlayers: React.FC<Props> = () => {
     const [{ teams, formations, mouseOverPlayerId, activeTeamId }]: any = useTracked();
-    const team = teams.find(t => t.id === activeTeamId);
-    const formation = formations.find(f => f.id === team.formationId);
+    const team = teams.find((t) => t.id === activeTeamId);
+    const formation = formations.find((f) => f.id === team.formationId);
 
     return (
         <>
@@ -27,15 +27,15 @@ const FormationPlayers: React.FC<Props> = () => {
 const FormationPlayer = styled.div<{ x: number; y: number; i: number; active: boolean }>`
     position: absolute;
     width: 5px;
-    height: 5px
+    height: 5px;
     border-radius: 50%;
     margin: auto;
-    background-color: ${p => p.theme.colors.textDefault};
+    background-color: ${(p) => p.theme.colors.textDefault};
 
-    top: ${p => p.y - 5}%; /* minus the sideline gap */
-    left: ${p => p.x - 3}%; /* minus the sideline gap */
+    top: ${(p) => p.y - 5}%; /* minus the sideline gap */
+    left: ${(p) => p.x - 3}%; /* minus the sideline gap */
     transition: left 600ms, top 600ms, transform 200ms;
-    transform: translateX(50%) translateY(50%) ${p => p.active && 'scale(1.5)'};
+    transform: translateX(50%) translateY(50%) ${(p) => p.active && 'scale(1.5)'};
 `;
 
 export default FormationPlayers;

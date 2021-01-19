@@ -1,6 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { absoluteFill } from 'utils/style';
+import styled from 'styled-components';
 
 const Disclaimer: React.FC = () => {
     return <Root>&copy; 2021 Fantasy Football</Root>;

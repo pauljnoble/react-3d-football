@@ -4,17 +4,17 @@ export const Layout = styled.div`
     display: flex;
     width: 100vw;
     height: 100vh;
-    min-width: ${p => p.theme.dimensions.minWidth + p.theme.dimensions.sidebarX + 40}px;
+    min-width: ${(p) => p.theme.dimensions.minWidth + p.theme.dimensions.sidebarX + 40}px;
     min-height: 600px;
-    background-color: ${p => p.theme.colors.bgDefault};
+    background-color: ${(p) => p.theme.colors.bgDefault};
 `;
 
 export const Sidebar = styled.aside`
     position: relative;
-    flex-basis: ${p => p.theme.dimensions.sidebarX}px;
-    background-color: ${p => p.theme.colors.bgSidebar};
+    flex-basis: ${(p) => p.theme.dimensions.sidebarX}px;
+    background-color: ${(p) => p.theme.colors.bgSidebar};
     padding-top: 120px;
-    color: ${p => p.theme.colors.textDefault};
+    color: ${(p) => p.theme.colors.textDefault};
     display: flex;
     flex-direction: column;
 
@@ -28,10 +28,7 @@ export const Sidebar = styled.aside`
     }
 
     &::before {
-        background-image: url();
-        background-repeat: no-repeat;
-        background-position: 16px center;
-        background-color: ${p => p.theme.colors.accent}; /* #489ed5; */
+        background-color: ${(p) => p.theme.colors.accent}; /* #489ed5; */
         background-size: 70% auto;
         top: 0;
         position: absolute;

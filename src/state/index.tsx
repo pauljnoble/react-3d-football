@@ -3,9 +3,7 @@ import { createContainer } from 'react-tracked';
 import initialStateValue from './initial-state';
 
 export const StateContext = createContext([]);
-
 export type State = typeof initialState;
-
 export const initialState = initialStateValue;
 
 export enum actions {
@@ -71,5 +69,4 @@ export const reducer: Reducer<State, Action> = (state, action) => {
 const useValue = ({ reducer, initialState }) => useReducer(reducer, initialState);
 
 export const useStateValue = () => useContext(StateContext);
-
 export const { Provider, useTracked } = createContainer(useValue);
