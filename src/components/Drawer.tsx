@@ -30,7 +30,6 @@ const Drawer: React.FC<Props> = () => {
         };
 
         const countryCode = player.nationality.split(',')[1].trim();
-        const emoji = countryCode && countries[countryCode] && countries[countryCode].emoji;
         const fullName = `${player.firstName} ${player.lastName}`;
 
         return (
