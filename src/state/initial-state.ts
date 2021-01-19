@@ -6,7 +6,7 @@ export default {
     playersVisible: false,
     isLoading: true,
     match: {
-        time: '14:00 Sun 24 Nov 2019',
+        time: '14:00 Sun 24 Nov 2021',
         venue: 'Stamford Bridge, London',
     },
     formations: [
