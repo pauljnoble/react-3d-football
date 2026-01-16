@@ -4,7 +4,7 @@
     "private": true,
     "dependencies": {
         "color": "^3.1.2",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.21",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
         "react-pose": "^4.0.10",
@@ -14,7 +14,7 @@
         "typescript": "^3.7.2"
     },
     "devDependencies": {
-        "@types/lodash": "^4.14.148",
+        "@types/lodash": "^4.17.20",
         "@types/react": "^16.9.11",
         "@types/styled-components": "^4.4.0"
     },
